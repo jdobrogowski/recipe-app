@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home_page">Home</a></li>
+        <li class="breadcrumb-item"><a href="/login">login</a></li>
+        <li class="breadcrumb-item active" aria-current="page">registration</li>
+    </ol>
+</nav>
+
+<!--/*@thymesVar id="user" type="com.jd.spring5webapp.domain.user.User"*/-->
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+
+            <div class="panel-heading">
+                <h1 class="h3 mb-3 font-weight-normal">REJESTRACJA</h1>
+            </div>
+            <div>
+                <form th:object="${user}" action="#" th:action="@{/registration}" method="post" class="form-signin">
+
+                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        <p>Please Correct Errors Below</p>
+                    </div>
+
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="col-md-3 form-group" th:class="${#fields.hasErrors('firstName')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
+                        <label for="firstName">Imię:</label>
+                        <input id="firstName" type="text" th:field="*{firstName}" autofocus class="form-control"
+                               th:errorclass="has-error"/>
+                        <span class="help-block" th:if="${#fields.hasErrors('firstName')}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('firstName')}" th:text="${error}"></li>
+                </ul>
+            </span>
+                    </div>
+
+
+                    <div class="col-md-3 form-group" th:class="${#fields.hasErrors('lastName')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
+                        <label for="lastName">Nazwisko:</label>
+                        <input id="lastName" type="text" th:field="*{lastName}" autofocus class="form-control"
+                               th:errorclass="has-error"/>
+                        <span class="help-block" th:if="${#fields.hasErrors('lastName')}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('lastName')}" th:text="${error}"/>
+                </ul>
+            </span>
+                    </div>
+
+                    <div class="col-md-3 form-group" th:class="${#fields.hasErrors('zipCode')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
+                        <label for="zipcode">Kod pocztowy:</label>
+                        <input id="zipcode" type="text" th:field="*{zipCode}" autofocus
+                               class="form-control"
+                               th:errorclass="has-error"/>
+                        <span class="help-block" th:if="${#fields.hasErrors('zipCode')}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('zipCode')}" th:text="${error}"/>
+                </ul>
+            </span>
+                    </div>
+
+                    <div class="col-md-3 form-group" th:class="${#fields.hasErrors('city')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'"><label
+                            for="city">Miasto:</label>
+                        <input id="city" type="text" th:field="*{city}" autofocus class="form-control"
+                               th:errorclass="has-error"/>
+                        <span class="help-block" th:if="${#fields.hasErrors('city')}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('city')}" th:text="${error}"/>
+                </ul>
+            </span>
+                    </div>
+
+
+                    <div class="col-md-3 form-group">
+                        <label>Country:</label>
+                        <select class="form-control" th:field="*{country}">
+                            <option th:each="countryValue : ${T(com.jd.recipeapp.user.domain.Country).values()}"
+                                    th:value="${countryValue.name()}"
+                                    th:text="${countryValue.name()}"
+                            >val
+                            </option>
+                        </select>
+                        <select class="form-control" th:remove="all">
+                            <option>Easy</option>
+                            <option>Medium</option>
+                            <option>Hard</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 form-group" th:class="${#fields.hasErrors('street')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
+                        <label for="street">Ulica:</label>
+                        <input id="street" type="text" th:field="*{street}" autofocus class="form-control"
+                               th:errorclass="has-error"/>
+                        <span class="help-block" th:if="${#fields.hasErrors('street')}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('street')}" th:text="${error}"/>
+                </ul>
+            </span>
+                    </div>
+
+                    <div class="col-md-3 form-group" th:class="${#fields.hasErrors('email')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
+                        <label for="inputEmail">Email </label>
+                        <input id="inputEmail" type="text" th:field="*{email}" autofocus class="form-control"
+                               th:errorclass="has-error"/>
+                        <span class="help-block" th:if="${#fields.hasErrors('email')}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('email')}" th:text="${error}"/>
+                </ul>
+            </span>
+                    </div>
+
+                    <div class="col-md-3 form-group" th:class="${#fields.hasErrors('password')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
+                        <label for="passw">Hasło:</label>
+                        <input id="passw" type="password" th:field="*{password}" autofocus class="form-control"
+                               th:errorclass="has-error"/>
+                        <span class="help-block" th:if="${#fields.hasErrors('password')}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('password')}" th:text="${error}"/>
+                </ul>
+            </span>
+                    </div>
+
+                    <div class="col-md-3 form-group" th:class="${#fields.hasErrors('password')}
+                                ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
+                        <label for="matchingPassword">Hasło:</label>
+                        <input id="matchingPassword" type="password" th:field="*{matchingPassword}" autofocus class="form-control"
+                               th:errorclass="has-error"/>
+                        <span class="help-block" th:if="${#fields.hasErrors('password')}">
+                <ul>
+                    <li th:each="error : ${#fields.errors('matchingPassword')}" th:text="${error}"/>
+                </ul>
+            </span>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Utwórz konto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
