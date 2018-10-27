@@ -15,13 +15,15 @@ public class IngredientDto {
 
     private Long id;
 
-    @NotBlank
+ //   @NotBlank
     private String name;
 
-    @NotBlank
+  //  @NotBlank
     private BigDecimal amount;
 
-    @NotBlank
+  //  @NotBlank
     private UniteOfMeasureDto uniteOfMeasureDto;
+
+    private Long recipeId;
 
 }

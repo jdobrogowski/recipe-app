@@ -13,6 +13,6 @@ public class UniteOfMeasureDto {
 
     private Long id;
 
-    @NotBlank
+   // @NotBlank
     private String name;
 }

@@ -20,42 +20,42 @@ public class RecipeDto {
 
     private Long id;
 
-    @NotBlank
-    @Size(min = 2, max = 100, message = "Opis przepisu jest nieprawidłowy. Dopuszczalna ilość znaków od {min} do {max}, została podana ${validatedValue}")
+//    @NotBlank
+//    @Size(min = 2, max = 100, message = "Opis przepisu jest nieprawidłowy. Dopuszczalna ilość znaków od {min} do {max}, została podana ${validatedValue}")
     private String description;
-
-    @NotBlank
-    @Min(value = 1, message = "Czas przygotowania nie prwaidłowy. Należy podać czas większy niż {min}, została podana ${validatedValue}")
-    @Max(value = 999, message = "Czas przygotowania nie prwaidłowy. Należy podać czas mniejszy niż {max}, została podana ${validatedValue}")
+//
+//    @NotBlank
+//    @Min(value = 1, message = "Czas przygotowania nie prwaidłowy. Należy podać czas większy niż {min}, została podana ${validatedValue}")
+//    @Max(value = 999, message = "Czas przygotowania nie prwaidłowy. Należy podać czas mniejszy niż {max}, została podana ${validatedValue}")
     private Integer prepTime;
 
-    @NotBlank
-    @Min(value = 1, message = "Czas gotowania nie prwaidłowy. Należy podać czas większy niż {min}, została podana ${validatedValue}")
-    @Max(value = 999, message = "Czas gotowania nie prwaidłowy. Należy podać czas mniejszy niż {max}, została podana ${validatedValue}")
+//    @NotBlank
+//    @Min(value = 1, message = "Czas gotowania nie prwaidłowy. Należy podać czas większy niż {min}, została podana ${validatedValue}")
+//    @Max(value = 999, message = "Czas gotowania nie prwaidłowy. Należy podać czas mniejszy niż {max}, została podana ${validatedValue}")
     private Integer cookTime;
 
-    @NotBlank
-    @Min(value = 0, message = "Ilość porrcji nieprwaidłowa. Należy podać większą niż {min}, została podana ${validatedValue}")
-    @Max(value = 999, message = "Ilość porrcji nieprwaidłowa. Należy podać mniejszą niż {max}, została podana ${validatedValue}")
+//    @NotBlank
+//    @Min(value = 0, message = "Ilość porrcji nieprwaidłowa. Należy podać większą niż {min}, została podana ${validatedValue}")
+//    @Max(value = 999, message = "Ilość porrcji nieprwaidłowa. Należy podać mniejszą niż {max}, została podana ${validatedValue}")
     private Integer servings;
 
-    @URL
+   // @URL
     private String url;
 
-    @NotBlank
-    @Size(min = 2, max = 100, message = "Opis przygotowania jest nieprawidłowy. Dopuszczalna ilość znaków  {min} do {max}, podałeś ${validatedValue}")
+//    @NotBlank
+//    @Size(min = 2, max = 100, message = "Opis przygotowania jest nieprawidłowy. Dopuszczalna ilość znaków  {min} do {max}, podałeś ${validatedValue}")
     private String preparing;
 
-    @NotBlank
+    //@NotBlank
     private Difficulty difficulty;
 
-    @NotBlank
+    //@NotBlank
     private NoteDto noteDto;
 
-    @NotBlank
+    //@NotBlank
     private List<CategoryDto> categoriesDto;
 
-    @NotBlank
+    //@NotBlank
     private List<IngredientDto> ingredientsDto;
 
 

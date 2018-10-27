@@ -9,6 +9,7 @@ import com.jd.recipeapp.user.repository.RoleRepository;
 import com.jd.recipeapp.user.repository.UserRepository;
 import com.jd.recipeapp.user.userExcecptions.UserExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -19,11 +20,13 @@ public class RegistrationService {
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public RegistrationService(UserRepository userRepository, RoleRepository roleRepository) {
+    public RegistrationService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void registerUser(UserRegistrationDto userRegistration) {
@@ -42,19 +45,21 @@ public class RegistrationService {
         } else {
             userRole = optionalRole.get();
         }
+        UserAddress userAddress = UserAddress.builder()
+                .country(userRegistration.getCountry())
+                .city(userRegistration.getCity())
+                .street(userRegistration.getStreet())
+                .zipCode(userRegistration.getZipCode())
+                .build();
         User user = User.builder()
                 .email(userRegistration.getEmail())
                 .firstName(userRegistration.getFirstName())
                 .lastName(userRegistration.getLastName())
-                .passwordHash(DigestUtils.sha512Hex(userRegistration.getPassword()))
-                .userAddress(UserAddress.builder()
-                        .country(userRegistration.getCountry())
-                        .city(userRegistration.getCity())
-                        .street(userRegistration.getStreet())
-                        .zipCode(userRegistration.getZipCode())
-                        .build())
+                .passwordHash(passwordEncoder.encode(userRegistration.getPassword()))
+                .userAddress(userAddress)
                 .build();
         user.setRoles(Sets.newHashSet(userRole));
         userRepository.save(user);
+
     }
 }

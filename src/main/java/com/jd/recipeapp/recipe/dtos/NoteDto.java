@@ -11,9 +11,6 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class NoteDto {
 
-
-   // private Long id;
-
-    @NotBlank
+    //@NotBlank
     private String text;
 }

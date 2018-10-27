@@ -1,4 +1,4 @@
-package com.jd.recipeapp.user.services;
+package com.jd.recipeapp.security;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

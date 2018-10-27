@@ -8,7 +8,6 @@ public class RecipeDtoToRecipe {
     public static Recipe rewrite(RecipeDto recipeDto) {
 
         if (recipeDto == null) {
-
             return null;
         }
 
@@ -37,7 +36,6 @@ public class RecipeDtoToRecipe {
                             .add(IngredientDtoToIngredient
                                     .rewrite(ingredientDto)));
         }
-
         return recipe;
     }
 }

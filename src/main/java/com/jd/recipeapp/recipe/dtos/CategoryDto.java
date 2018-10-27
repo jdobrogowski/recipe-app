@@ -13,7 +13,7 @@ public class CategoryDto {
 
     private Long id;
 
-    @NotBlank
+  //  @NotBlank
     private String name;
 
 }

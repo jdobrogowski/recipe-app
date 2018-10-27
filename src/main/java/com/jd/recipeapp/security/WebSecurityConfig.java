@@ -23,17 +23,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                .antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers("/products/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                .antMatchers("/admin/*").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/recipe/*").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                .antMatchers("/ingredient/*").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                 .antMatchers("/console/*").permitAll()
-                .anyRequest().permitAll()
+                .antMatchers("/home_page").permitAll()
+                .antMatchers("/registration").permitAll()
+                .antMatchers("/login").permitAll()
+             //   .anyRequest().permitAll()
                 .and().csrf().disable()
                 .headers().frameOptions().disable()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .usernameParameter("email")
-                .passwordParameter("password")
+                .passwordParameter("passwordHash")
                 .loginProcessingUrl("/login-process")
                 .defaultSuccessUrl("/loginEffect")
                 .failureUrl("/login?error=1");
@@ -41,17 +45,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin@admin.pl")
-                .password(passwordEncoder.encode("admin12345"))
-                .roles("ADMIN")
-                .and()
-                .withUser("user@user.pl")
-                .password(passwordEncoder.encode("user12345"))
-                .roles("USER");
-        auth.jdbcAuthentication()
+//        auth.inMemoryAuthentication()
+//                .withUser("admin@admin.pl")
+//                .password(passwordEncoder.encode("admin12345"))
+//                .roles("ADMIN")
+//                .and()
+//                .withUser("user@user.pl")
+//                .password(passwordEncoder.encode("user12345"))
+//                .roles("USER");
+
+        auth.jdbcAuthentication() //FIXME
                 .usersByUsernameQuery(
-                        "SELECT u.email, u.password, 1 " +
+                        "SELECT u.email, u.password_hash, 1 " +
                                 "FROM user u " +
                                 "WHERE u.email = ?")
                 .authoritiesByUsernameQuery(
