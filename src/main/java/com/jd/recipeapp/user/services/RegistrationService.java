@@ -8,6 +8,7 @@ import com.jd.recipeapp.user.dtos.UserRegistrationDto;
 import com.jd.recipeapp.user.repository.RoleRepository;
 import com.jd.recipeapp.user.repository.UserRepository;
 import com.jd.recipeapp.user.userExcecptions.UserExistsException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class RegistrationService {
 
     private UserRepository userRepository;

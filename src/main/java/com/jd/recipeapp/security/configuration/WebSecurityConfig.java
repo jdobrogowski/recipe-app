@@ -1,4 +1,4 @@
-package com.jd.recipeapp.security;
+package com.jd.recipeapp.security.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -15,29 +15,31 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
     private DataSource dataSource;
+//    @Autowired
+//    private MyUserDetailsService userDetailsService;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/admin/*").hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers("/recipe/*").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                .antMatchers("/recipe/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                 .antMatchers("/ingredient/*").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                 .antMatchers("/console/*").permitAll()
                 .antMatchers("/home_page").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/login").permitAll()
-             //   .anyRequest().permitAll()
+                .anyRequest().permitAll()
                 .and().csrf().disable()
                 .headers().frameOptions().disable()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .usernameParameter("email")
-                .passwordParameter("passwordHash")
+                .passwordParameter("password")
                 .loginProcessingUrl("/login-process")
                 .defaultSuccessUrl("/loginEffect")
                 .failureUrl("/login?error=1");
@@ -45,16 +47,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("admin@admin.pl")
-//                .password(passwordEncoder.encode("admin12345"))
-//                .roles("ADMIN")
-//                .and()
-//                .withUser("user@user.pl")
-//                .password(passwordEncoder.encode("user12345"))
-//                .roles("USER");
+        auth.inMemoryAuthentication()
+                .withUser("admin@admin.pl")
+                .password(passwordEncoder.encode("admin12345"))
+                .roles("ADMIN")
+                .and()
+                .withUser("user@user.pl")
+                .password(passwordEncoder.encode("user12345"))
+                .roles("USER");
 
-        auth.jdbcAuthentication() //FIXME
+        auth.jdbcAuthentication()
                 .usersByUsernameQuery(
                         "SELECT u.email, u.password_hash, 1 " +
                                 "FROM user u " +
@@ -69,5 +71,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                 "WHERE u.email=?")
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder);
+
     }
+
+
+//    @Bean
+//    public DaoAuthenticationProvider authenticationProvider() {
+//        DaoAuthenticationProvider authProvider
+//                = new DaoAuthenticationProvider();
+//        authProvider.setUserDetailsService(userDetailsService);
+//        authProvider.setPasswordEncoder(passwordEncoder());
+//        return authProvider;
+//    }
+
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 }

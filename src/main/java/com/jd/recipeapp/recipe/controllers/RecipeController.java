@@ -40,7 +40,7 @@ public class RecipeController {
     }
 
 
-    @GetMapping("/recipe/new")
+    @GetMapping("/recipe")
     public String createRecipeForm(Model model) {
 
         model.addAttribute("recipe", new RecipeDto());
