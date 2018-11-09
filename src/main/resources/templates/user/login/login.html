@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <div th:replace="fragments/header :: header-css"></div>
+    <link rel="stylesheet" th:href="@{/css/signin.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="center">
+    <div id="panel">
+        <form th:action="@{/login-process}" method="post">
+            <label for="username">adress email:</label>
+            <input type="text" id="username" name="loginEmail" placeholder="john@yahoo.com">
+            <label for="password">password:</label>
+            <input type="password" id="password" name="loginPassword" placeholder="123456">
+            <div id="lower">
+                <button>Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

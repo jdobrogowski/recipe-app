@@ -28,7 +28,7 @@ public class RegistrationController {
     public String registrationForm(Model model) {
 
         model.addAttribute("user", new UserRegistrationDto());
-        return "registration";
+        return "user/registration/registration";
     }
 
     @PostMapping("/registration")
@@ -37,12 +37,12 @@ public class RegistrationController {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors()
                     .forEach(objectError -> log.error(objectError.toString()));
-            return "registration";
+            return "user/registration/registration";
         }
 
         registrationServicel.registerUser(userRegistration);
         model.addAttribute("userRegistration", userRegistration);
-        return "registrationEffect";
+        return "user/registration/registrationEffect";
     }
 }
 

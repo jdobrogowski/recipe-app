@@ -21,6 +21,4 @@ public class Category {
 
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
-    private List<Recipe> recipes;
 }

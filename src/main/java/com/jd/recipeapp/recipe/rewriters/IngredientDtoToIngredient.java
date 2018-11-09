@@ -14,7 +14,7 @@ public class IngredientDtoToIngredient {
                 .id(ingredientDto.getId())
                 .amount(ingredientDto.getAmount())
                 .name(ingredientDto.getName())
-                .uniteOfMeasure(UniteOfMeasureDtoToUniteOfMeasure.rewrite(ingredientDto.getUniteOfMeasureDto()))
+                .unitOfMeasure(UniteOfMeasureDtoToUniteOfMeasure.rewrite(ingredientDto.getUnitOfMeasureDto()))
                 .build();
     }
 }

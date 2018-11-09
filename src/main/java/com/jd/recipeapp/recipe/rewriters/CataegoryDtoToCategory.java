@@ -15,5 +15,6 @@ public class CataegoryDtoToCategory {
                 .id(categoryDto.getId())
                 .name(categoryDto.getName())
                 .build();
+
     }
 }

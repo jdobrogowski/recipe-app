@@ -7,8 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -20,8 +19,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Lob
-    private String description;
+    private String name;
 
     private Integer prepTime;
 
@@ -34,16 +32,18 @@ public class Recipe {
     @Lob
     private String preparing;
 
-    @Embedded
-    private Note note;
+  ///  @Embedded
+    private String note;
 
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
 
     @ManyToMany
-    @JoinTable(name = "recipe_category",
+    @JoinTable(name = "recipe_category"
+            ,
             joinColumns = @JoinColumn(name = "recipe_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
     private List<Category> categories;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
@@ -51,5 +51,6 @@ public class Recipe {
 
     @ManyToOne
     private User user;
+
 
 }

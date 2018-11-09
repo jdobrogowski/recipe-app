@@ -1,6 +1,6 @@
 package com.jd.recipeapp.recipe.services;
 
-import com.jd.recipeapp.recipe.domain.UniteOfMeasure;
+import com.jd.recipeapp.recipe.domain.UnitOfMeasure;
 import com.jd.recipeapp.recipe.exceptions.UniteOfMeasureNotFoundExceptions;
 import com.jd.recipeapp.recipe.repositories.UniteOfMeasureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ public class UnitOfMeasureService {
         this.uniteOfMeasureRepository = uniteOfMeasureRepository;
     }
 
-    public List<UniteOfMeasure> findAllUnitOfMEasure(){
+    public List<UnitOfMeasure> findAllUnitOfMEasure(){
 
-        List<UniteOfMeasure> uniteOfMeasures = uniteOfMeasureRepository.findAll();
-        if(uniteOfMeasures.isEmpty()){
+        List<UnitOfMeasure> unitOfMeasures = uniteOfMeasureRepository.findAll();
+        if(unitOfMeasures.isEmpty()){
             throw new UniteOfMeasureNotFoundExceptions(" Empty list od unir of measure");
         }
-        return uniteOfMeasures;
+        return unitOfMeasures;
     }
 }

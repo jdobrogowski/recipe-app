@@ -5,16 +5,11 @@ import com.jd.recipeapp.recipe.domain.Difficulty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.URL;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.List;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 public class RecipeDto {
 
@@ -22,7 +17,7 @@ public class RecipeDto {
 
 //    @NotBlank
 //    @Size(min = 2, max = 100, message = "Opis przepisu jest nieprawidłowy. Dopuszczalna ilość znaków od {min} do {max}, została podana ${validatedValue}")
-    private String description;
+    private String name;
 //
 //    @NotBlank
 //    @Min(value = 1, message = "Czas przygotowania nie prwaidłowy. Należy podać czas większy niż {min}, została podana ${validatedValue}")
@@ -50,7 +45,7 @@ public class RecipeDto {
     private Difficulty difficulty;
 
     //@NotBlank
-    private NoteDto noteDto;
+    private String note;
 
     //@NotBlank
     private List<CategoryDto> categoriesDto;
@@ -59,4 +54,91 @@ public class RecipeDto {
     private List<IngredientDto> ingredientsDto;
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getPrepTime() {
+        return prepTime;
+    }
+
+    public void setPrepTime(Integer prepTime) {
+        this.prepTime = prepTime;
+    }
+
+    public Integer getCookTime() {
+        return cookTime;
+    }
+
+    public void setCookTime(Integer cookTime) {
+        this.cookTime = cookTime;
+    }
+
+    public Integer getServings() {
+        return servings;
+    }
+
+    public void setServings(Integer servings) {
+        this.servings = servings;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getPreparing() {
+        return preparing;
+    }
+
+    public void setPreparing(String preparing) {
+        this.preparing = preparing;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public List<CategoryDto> getCategoriesDto() {
+        return categoriesDto;
+    }
+
+    public void setCategoriesDto(List<CategoryDto> categoriesDto) {
+        this.categoriesDto = categoriesDto;
+    }
+
+    public List<IngredientDto> getIngredientsDto() {
+        return ingredientsDto;
+    }
+
+    public void setIngredientsDto(List<IngredientDto> ingredientsDto) {
+        this.ingredientsDto = ingredientsDto;
+    }
 }

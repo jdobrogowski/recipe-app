@@ -1,7 +1,7 @@
 package com.jd.recipeapp.recipe.controllers;
 
 import com.jd.recipeapp.recipe.dtos.IngredientDto;
-import com.jd.recipeapp.recipe.dtos.UniteOfMeasureDto;
+import com.jd.recipeapp.recipe.dtos.UnitOfMeasureDto;
 import com.jd.recipeapp.recipe.services.IngredientService;
 import com.jd.recipeapp.recipe.services.UnitOfMeasureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class IngredientController {
     private IngredientDto prepareNewIngredient(Long recipeId) {
 
         IngredientDto ingredientDto = new IngredientDto();
-        ingredientDto.setUniteOfMeasureDto(new UniteOfMeasureDto());
+        ingredientDto.setUnitOfMeasureDto(new UnitOfMeasureDto());
         ingredientDto.setRecipeId(recipeId);
         return ingredientDto;
     }

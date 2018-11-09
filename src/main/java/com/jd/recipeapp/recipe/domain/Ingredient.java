@@ -6,8 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -23,8 +22,9 @@ public class Ingredient {
     private BigDecimal amount;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private UniteOfMeasure uniteOfMeasure;
+    private UnitOfMeasure unitOfMeasure;
 
     @ManyToOne
     private Recipe recipe;
+
 }

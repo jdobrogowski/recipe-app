@@ -9,11 +9,11 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CategoryDto {
+public class UnitOfMeasureDto {
 
     private Long id;
 
-  //  @NotBlank
+   // @NotBlank
     private String name;
 
     public Long getId() {

@@ -13,13 +13,14 @@ public class RecipeDtoToRecipe {
 
         Recipe recipe = Recipe.builder()
                 .id(recipeDto.getId())
-                .description(recipeDto.getDescription())
+                .name(recipeDto.getName())
                 .prepTime(recipeDto.getPrepTime())
                 .cookTime(recipeDto.getCookTime())
+                .preparing(recipeDto.getPreparing())
                 .servings(recipeDto.getServings())
+                .note(recipeDto.getNote())
                 .url(recipeDto.getUrl())
                 .difficulty(recipeDto.getDifficulty())
-                .note(NoteDtoToNote.rewrite(recipeDto.getNoteDto()))
                 .build();
 
         if (recipeDto.getCategoriesDto() != null) {
